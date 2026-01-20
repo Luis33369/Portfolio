@@ -3,15 +3,15 @@ export const personalInfo = {
   name: "Luis Dario",
   title: "Full Stack Developer",
   tagline: "I build accessible, pixel-perfect digital experiences for the web.",
-  email: "hello@luisdario.dev",
-  location: "San Francisco, CA",
+  email: "luis33369@gmail.com",
+  location: "Irvine, CA",
   bio: `I'm a passionate developer with 5+ years of experience building web applications. 
   I specialize in creating modern, responsive, and accessible user interfaces using React and Next.js.
-  When I'm not coding, you'll find me exploring new technologies, contributing to open source, 
+  When I'm not coding, you'll find me exploring new technologies, creating a very cool developing enviroments with neovim, contributing to open source, 
   or enjoying a good cup of coffee.`,
   social: {
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
+    github: "https://github.com/Luis33369",
+    linkedin: "https://www.linkedin.com/in/luis-da/",
     twitter: "https://twitter.com",
   },
 }
@@ -19,18 +19,18 @@ export const personalInfo = {
 export const skills = {
   frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
   backend: ["Node.js", "Python", "PostgreSQL", "MongoDB", "GraphQL"],
-  tools: ["Git", "Docker", "AWS", "Figma", "VS Code"],
+  tools: ["Git", "Docker", "AWS", "Figma", "Neovim", "Tmux", "Linux"],
 }
 
 export const projects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce solution with real-time inventory, payment processing, and admin dashboard.",
+    title: "DoorDash Clone",
+    description: "Created a DoorDash clone to play around with different components and Tailwind",
     image: "/ecommerce-dashboard-with-products.jpg",
-    tech: ["Next.js", "Stripe", "PostgreSQL", "Tailwind CSS"],
-    github: "https://github.com",
-    live: "https://example.com",
+    tech: ["React", "Tailwind CSS"],
+    github: "https://github.com/Luis33369/DoorDash-Clone",
+    live: "https://door-dash-one.vercel.app/",
     featured: true,
   },
   {
