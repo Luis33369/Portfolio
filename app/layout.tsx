@@ -9,13 +9,13 @@ const inter = Inter({ subsets: ["latin"] })
 const firaCode = Fira_Code({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "John Doe | Full Stack Developer",
+  title: "Luis Dario | Full Stack Developer",
   description:
     "Personal portfolio of John Doe - Full Stack Developer specializing in React, Next.js, and modern web technologies.",
   keywords: ["developer", "portfolio", "react", "nextjs", "typescript", "full stack"],
-  authors: [{ name: "John Doe" }],
-  creator: "John Doe",
-    generator: 'v0.app'
+  authors: [{ name: "Luis Dario" }],
+  creator: "Luis Dario",
+  generator: 'v0.app'
 }
 
 export const viewport: Viewport = {
