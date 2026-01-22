@@ -104,9 +104,9 @@ export const experience = [
     companyUrl: "https://aoto.com",
     period: "2023 — Present",
     description:
-      "Technical Support Engineer with hands-on experience diagnosing, debugging, and resolving complex software and system issues. Skilled at reproducing bugs, analyzing logs, and collaborating with engineering teams to deliver reliable solutions. Strong at translating technical problems into clear, actionable insights for both users and developers. Passionate about automation, clean code, and building scalable, user-focused applications."
-      // "Lead development of customer-facing applications using React and Next.js. Implemented design systems and improved performance by 40%.",
-      tech: ["React", "TypeScript", "Next.js", "Python", "Linux", "GraphQL", "REST APIs", "GIT", "CLI/Bash"],
+      "Technical Support Engineer with hands-on experience diagnosing, debugging, and resolving complex software and system issues. Skilled at reproducing bugs, analyzing logs, and collaborating with engineering teams to deliver reliable solutions. Strong at translating technical problems into clear, actionable insights for both users and developers. Passionate about automation, clean code, and building scalable, user-focused applications.",
+    // "Lead development of customer-facing applications using React and Next.js. Implemented design systems and improved performance by 40%.",
+    tech: ["React", "TypeScript", "Next.js", "Python", "Linux", "GraphQL", "REST APIs", "GIT", "CLI/Bash"],
   },
   // {
   //   id: 2,
