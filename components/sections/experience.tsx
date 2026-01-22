@@ -32,11 +32,10 @@ export function ExperienceSection() {
                 <button
                   key={job.id}
                   onClick={() => setActiveTab(index)}
-                  className={`px-4 py-3 text-sm font-mono text-left whitespace-nowrap transition-all border-b-2 md:border-b-0 md:border-l-2 -mb-px md:mb-0 md:-ml-px ${
-                    activeTab === index
-                      ? "text-primary border-primary bg-primary/5"
-                      : "text-muted-foreground border-transparent hover:text-primary hover:bg-primary/5"
-                  }`}
+                  className={`px-4 py-3 text-sm font-mono text-left whitespace-nowrap transition-all border-b-2 md:border-b-0 md:border-l-2 -mb-px md:mb-0 md:-ml-px ${activeTab === index
+                    ? "text-primary border-primary bg-primary/5"
+                    : "text-muted-foreground border-transparent hover:text-primary hover:bg-primary/5"
+                    }`}
                 >
                   {job.company}
                 </button>
