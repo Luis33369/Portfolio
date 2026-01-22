@@ -53,7 +53,8 @@ export function AboutSection() {
             <motion.div className="relative group" whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
               <div className="relative w-full aspect-square rounded-lg overflow-hidden">
                 <Image
-                  src="/professional-developer-portrait.png"
+                  // src="/professional-developer-portrait.png"
+                  src="/IMG_0810.jpeg"
                   alt={`${personalInfo.name} profile photo`}
                   fill
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-300"
