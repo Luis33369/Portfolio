@@ -3,10 +3,10 @@
 import { motion } from "framer-motion"
 import { personalInfo } from "@/lib/data"
 import { Github, Linkedin, Twitter } from "lucide-react"
-
+//TODO: Remove the built and center the personal info
 export function Footer() {
   return (
-    <footer className="py-8 px-6 border-t border-border">
+    <footer className="py-8 px-6 border-t border-border grid place-items-center">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Social Links - Mobile Only */}
@@ -56,8 +56,6 @@ export function Footer() {
             <p className="text-muted-foreground/60 text-xs mt-1">© {new Date().getFullYear()} All rights reserved.</p>
           </motion.div>
 
-          {/* Built with */}
-          <p className="text-muted-foreground/60 text-xs font-mono">Built with Next.js & Tailwind CSS</p>
         </div>
       </div>
     </footer>
