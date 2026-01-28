@@ -10,21 +10,39 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Mail, MapPin, Send, Github, Linkedin, Twitter } from "lucide-react"
+import { Mail, MapPin, Send, Github, Linkedin, Twitter, AlertCircle } from "lucide-react"
+import { sendEmail } from "@/app/actions/send-email"
 
 export function ContactSection() {
   const ref = useRef(null)
+  const formRef = useRef<HTMLFormElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    setError(null)
+
+    const formData = new FormData(formRef.current!)
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      message: formData.get("message") as string,
+    }
+
+    const result = await sendEmail(data)
+
+    if (result.success) {
+      setSubmitted(true)
+      formRef.current?.reset()
+    } else {
+      setError(result.error || "Failed to send message. Please try again or email me directly.")
+    }
+
     setIsSubmitting(false)
-    setSubmitted(true)
   }
 
   return (
@@ -66,7 +84,7 @@ export function ContactSection() {
               <p className="text-primary font-semibold text-lg">Thanks for reaching out! I'll get back to you soon.</p>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6 text-left">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 text-left">
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name</Label>
@@ -95,6 +113,16 @@ export function ContactSection() {
                   className="bg-card resize-none"
                 />
               </div>
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-2 text-red-500 bg-red-500/10 border border-red-500/30 rounded-lg p-3"
+                >
+                  <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                  <p className="text-sm">{error}</p>
+                </motion.div>
+              )}
               <div className="text-center">
                 <Button
                   type="submit"
