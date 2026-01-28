@@ -1,27 +1,26 @@
-"use server"
+import { NextResponse } from "next/server"
 
-interface EmailData {
-  name: string
-  email: string
-  message: string
-}
+export async function POST(request: Request) {
+  const data = await request.json()
 
-export async function sendEmail(data: EmailData) {
   const serviceId = process.env.EMAILJS_SERVICE_ID
   const templateId = process.env.EMAILJS_TEMPLATE_ID
   const publicKey = process.env.EMAILJS_PUBLIC_KEY
 
-  console.log("[v0] EmailJS config check:", {
+  console.log("[v0] API Route - EmailJS config check:", {
     hasServiceId: !!serviceId,
     hasTemplateId: !!templateId,
     hasPublicKey: !!publicKey,
   })
 
   if (!serviceId || !templateId || !publicKey) {
-    return { 
-      success: false, 
-      error: `Email service not configured. Missing: ${!serviceId ? 'EMAILJS_SERVICE_ID ' : ''}${!templateId ? 'EMAILJS_TEMPLATE_ID ' : ''}${!publicKey ? 'EMAILJS_PUBLIC_KEY' : ''}`.trim()
-    }
+    return NextResponse.json(
+      {
+        success: false,
+        error: `Email service not configured. Missing: ${!serviceId ? "EMAILJS_SERVICE_ID " : ""}${!templateId ? "EMAILJS_TEMPLATE_ID " : ""}${!publicKey ? "EMAILJS_PUBLIC_KEY" : ""}`.trim(),
+      },
+      { status: 500 }
+    )
   }
 
   try {
@@ -48,12 +47,12 @@ export async function sendEmail(data: EmailData) {
     if (!response.ok) {
       const errorText = await response.text()
       console.log("[v0] EmailJS error response:", errorText)
-      return { success: false, error: `EmailJS error: ${errorText}` }
+      return NextResponse.json({ success: false, error: `EmailJS error: ${errorText}` }, { status: 500 })
     }
 
-    return { success: true }
+    return NextResponse.json({ success: true })
   } catch (error) {
     console.error("[v0] EmailJS error:", error)
-    return { success: false, error: "Failed to send email. Please try again." }
+    return NextResponse.json({ success: false, error: "Failed to send email. Please try again." }, { status: 500 })
   }
 }
