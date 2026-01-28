@@ -11,6 +11,12 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Mail, MapPin, Send, Github, Linkedin, Twitter, AlertCircle } from "lucide-react"
+import emailjs from "@emailjs/browser"
+
+// EmailJS credentials - these are safe to expose on client-side as they only allow sending emails
+const EMAILJS_SERVICE_ID = "service_y2v1mv7"
+const EMAILJS_TEMPLATE_ID = "template_y7pqj4t"
+const EMAILJS_PUBLIC_KEY = "ie_5PzocRfvq1oOCZ"
 
 export function ContactSection() {
   const ref = useRef(null)
@@ -25,30 +31,15 @@ export function ContactSection() {
     setIsSubmitting(true)
     setError(null)
 
-    const formData = new FormData(formRef.current!)
-    const data = {
-      name: formData.get("name") as string,
-      email: formData.get("email") as string,
-      message: formData.get("message") as string,
-    }
-
     try {
-      const response = await fetch("/api/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-
-      const result = await response.json()
-
-      if (result.success) {
-        setSubmitted(true)
-        formRef.current?.reset()
-      } else {
-        setError(result.error || "Failed to send message. Please try again or email me directly.")
-      }
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current!,
+        EMAILJS_PUBLIC_KEY
+      )
+      setSubmitted(true)
+      formRef.current?.reset()
     } catch (err) {
       setError("Failed to send message. Please try again or email me directly.")
     }
