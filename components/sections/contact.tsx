@@ -11,7 +11,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Mail, MapPin, Send, Github, Linkedin, Twitter, AlertCircle } from "lucide-react"
-import { sendEmail } from "@/app/actions/send-email"
 
 export function ContactSection() {
   const ref = useRef(null)
@@ -33,13 +32,25 @@ export function ContactSection() {
       message: formData.get("message") as string,
     }
 
-    const result = await sendEmail(data)
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
 
-    if (result.success) {
-      setSubmitted(true)
-      formRef.current?.reset()
-    } else {
-      setError(result.error || "Failed to send message. Please try again or email me directly.")
+      const result = await response.json()
+
+      if (result.success) {
+        setSubmitted(true)
+        formRef.current?.reset()
+      } else {
+        setError(result.error || "Failed to send message. Please try again or email me directly.")
+      }
+    } catch (err) {
+      setError("Failed to send message. Please try again or email me directly.")
     }
 
     setIsSubmitting(false)
